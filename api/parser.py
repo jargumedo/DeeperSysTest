@@ -18,11 +18,11 @@ class User:
     preferences: UserPreferences
     active: bool = True
     created_ts: float = field(default_factory=lambda: time.time())
-    updated_ts: float = field(default_factory=lambda: time.time())  # Agregar updated_ts
+    updated_ts: float = field(default_factory=lambda: time.time())  # Add updated_ts
 
 # Parse JSON to User Class
 def parse_user(data):
-    # Parse roles dinámicamente, excluyendo el rol 'active'
+    # Parse roles, except 'active' role
     roles = [role.split('_')[-1] for role, value in data.items() if role.startswith('is_user_') and value and role != 'is_user_active']
     
     # Create preferences
@@ -39,7 +39,7 @@ def parse_user(data):
         preferences=preferences,
         active=data.get('is_user_active', True),
         created_ts=created_ts,
-        updated_ts=time.time()  # Inicializa updated_ts al momento de la creación
+        updated_ts=time.time() 
     )
     return user
 
@@ -53,7 +53,7 @@ def import_users_from_file_to_mongodb(file_path, db_name='deepersysdb', collecti
     # Load JSON from the file
     with open(file_path, 'r') as file:
         data = json.load(file)
-        users_data = data.get('users', [])  # Accede a la lista de usuarios dentro de 'users'
+        users_data = data.get('users', [])  
 
         if not users_data:
             print("No se encontraron usuarios en el JSON.")

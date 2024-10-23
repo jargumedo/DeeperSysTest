@@ -12,7 +12,7 @@ CORS(app)
 @app.route('/api/users', methods=['GET'])
 def get_users():
     users = list(db['users'].find())
-    users = [{**user, '_id': str(user['_id'])} for user in users]  # Convertir ObjectId a string
+    users = [{**user, '_id': str(user['_id'])} for user in users] 
     return jsonify(users)
 
 @app.route('/users', methods=['POST'])
@@ -42,7 +42,7 @@ def addUser():
 def get_user_by_username(username):
     user = db['users'].find_one({'username': username})
     if user:
-        user['_id'] = str(user['_id'])  # Convertir ObjectId a string
+        user['_id'] = str(user['_id'])  
         return jsonify(user), 200
     else:
         return jsonify({'message': 'User not found'}), 404
@@ -73,10 +73,10 @@ def update(username):
             'updated_ts': time.time()
         }
 
-        # Actualiza el usuario basado en el username original
+        # It updated the users based on the real username
         result = db['users'].update_one({'username': username}, {'$set': updated_user})
 
-        # Si el nombre de usuario se ha cambiado, actualiza el nombre en la base de datos
+       #If the name changes it updates it in the database
         if username != new_username:
             db['users'].update_one({'username': username}, {'$set': {'username': new_username}})
 

@@ -30,7 +30,7 @@
         </button>
       </div>
 
-      <!-- Modal para editar usuario -->
+    
       <FormCreateUser
         v-if="isModalVisible"
         :isVisible="isModalVisible"
@@ -47,7 +47,7 @@ import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import userService from "../services/usersService";
 import FormCreateUser from "./FormCreateUser.vue";
-import Swal from "sweetalert2"; // Importa SweetAlert2
+import Swal from "sweetalert2"; 
 
 const route = useRoute();
 const router = useRouter();
@@ -86,7 +86,7 @@ const formatDate = (timestamp) => {
   return date.toLocaleString();
 };
 
-// Nueva función para confirmar la edición del usuario
+// Function to confirm the user´s decision
 const confirmEditUser = () => {
   Swal.fire({
     title: "Are you sure you want to edit this user?",
@@ -98,7 +98,7 @@ const confirmEditUser = () => {
     confirmButtonText: "Yes, edit it!",
   }).then((result) => {
     if (result.isConfirmed) {
-      openEditModal(); // Si el usuario confirma, abre el modal
+      openEditModal(); 
     }
   });
 };

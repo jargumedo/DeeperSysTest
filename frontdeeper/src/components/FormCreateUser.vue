@@ -25,15 +25,19 @@
           />
         </div>
         <div class="form-group">
-          <label for="roles">Roles:</label>
-          <input
-            v-model="formUser.roles"
-            type="text"
-            id="roles"
-            placeholder="Comma separated"
-            required
-            class="form-control"
-          />
+          <label>Roles:</label><br />
+          <label>
+            <input type="checkbox" value="admin" v-model="formUser.roles" />
+            Admin
+          </label>
+          <label>
+            <input type="checkbox" value="manager" v-model="formUser.roles" />
+            Manager
+          </label>
+          <label>
+            <input type="checkbox" value="tester" v-model="formUser.roles" />
+            Tester
+          </label>
         </div>
         <div class="form-group">
           <label for="timezone">Timezone:</label>
@@ -74,10 +78,11 @@ const router = useRouter();
 const formUser = ref({
   username: "",
   password: "",
-  roles: [],
+  roles: [], // Inicialmente un arreglo vacío para los roles seleccionados
   preferences: { timezone: "" },
 });
 
+// Rellena el formulario con los datos del usuario si se está editando
 watch(
   () => props.userData,
   (newValue) => {
@@ -118,26 +123,21 @@ const submitForm = async () => {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.6
-  ); /* Aumenta la opacidad para mejor enfoque */
+  background-color: rgba(0, 0, 0, 0.6);
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
   background-color: white;
-  padding: 30px; /* Más espacio para una sensación más amplia */
-  border-radius: 10px; /* Bordes más redondeados para un estilo más moderno */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 500px; /* Mantén el ancho fijo en pantallas grandes */
+  max-width: 500px;
   position: relative;
-  transition: all 0.3s ease; /* Transición suave */
-  animation: slide-down 0.3s ease-out; /* Animación al aparecer */
+  transition: all 0.3s ease;
+  animation: slide-down 0.3s ease-out;
 }
 
 @keyframes slide-down {

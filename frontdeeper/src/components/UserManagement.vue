@@ -81,13 +81,14 @@
 import { ref, onMounted } from "vue";
 import userService from "../services/usersService";
 import FormCreateUser from "./FormCreateUser.vue";
-import Swal from "sweetalert2"; // Importa SweetAlert2
+import Swal from "sweetalert2";
 
 const users = ref([]);
 const isModalVisible = ref(false);
 const selectedUser = ref(null);
 const isEditing = ref(false);
 
+//Format date
 const formatDate = (timestamp) => {
   const date = new Date(timestamp * 1000);
   return date.toLocaleString();
@@ -102,7 +103,7 @@ const fetchUsers = async () => {
   }
 };
 
-// Nueva función para confirmar la edición del usuario
+// Alert to confirm the user´s decision
 const confirmEditUser = (user) => {
   Swal.fire({
     title: "Are you sure you want to edit this user?",
@@ -114,12 +115,11 @@ const confirmEditUser = (user) => {
     confirmButtonText: "Yes, edit it!",
   }).then((result) => {
     if (result.isConfirmed) {
-      editUser(user); // Si el usuario confirma, llama a la función editUser
+      editUser(user);
     }
   });
 };
 
-// Nueva función para confirmar la eliminación del usuario
 const confirmDeleteUser = (username) => {
   Swal.fire({
     title: "Are you sure?",
@@ -163,7 +163,7 @@ const closeModal = () => {
   isEditing.value = false;
 };
 
-// Llamar a fetchUsers al montar el componente
+//Call fetchUsers when the component is mounted
 onMounted(fetchUsers);
 </script>
 
