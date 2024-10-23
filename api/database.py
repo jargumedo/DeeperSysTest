@@ -10,5 +10,5 @@ def dbConnection():
         db = client['deepersysdb']  
         return db
     except Exception as e:
-        print(f"Error al conectar con la base de datos: {e}")
+        print(f"Error connecting to the database: {e}")
         return None  
