@@ -51,13 +51,22 @@ pip install -r requirements.txt
 ```
 
 c. Configure MongoDB Connection
-Make sure to have the correct configuration file to connect your application to MongoDB. Review the connection code in parser.py and adjust the connection URL if necessary.
+Make sure to have the correct configuration file to connect your application to MongoDB. Review the connection code in parser.py and database.py and adjust the connection URL if necessary.
+You should have an account on MongoDB and change the MONGO_URI variable of the database.py file with your username and password, and the configuration that MONGODB provide you.
+EX: MONGO_URI=mongodb+srv://<username>:<password>@cluster0.3tvwf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
 
 d. Run the Backend
 Finally, run the backend server with the following command:
 
 ```bash
 python app.py
+```
+
+e. Run the script to import the data to MONGO DB
+
+```bash
+python parser.py
 ```
 
 The backend should be running at http://localhost:4000.
