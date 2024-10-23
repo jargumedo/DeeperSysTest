@@ -56,7 +56,7 @@ def import_users_from_file_to_mongodb(file_path, db_name='deepersysdb', collecti
         users_data = data.get('users', [])  
 
         if not users_data:
-            print("No se encontraron usuarios en el JSON.")
+            print("Users not found in json.")
             return
 
     # Insert each user into the database
@@ -64,9 +64,9 @@ def import_users_from_file_to_mongodb(file_path, db_name='deepersysdb', collecti
         user = parse_user(user_data)
         try:
             collection.insert_one(asdict(user))
-            print(f"Usuario {user.username} insertado correctamente.")
+            print(f"Usuario {user.username} inserted correctly.")
         except Exception as e:
-            print(f"Error al insertar el usuario {user.username}: {e}")
+            print(f"Error inserting user {user.username}: {e}")
 
 if __name__ == "__main__":
     file_path = "../api/users.json" 
